@@ -14,6 +14,9 @@ class Solution:
             except KeyError :
                 return False
 
+            if idx % 2 != 0 :
+                return False
+
             try :
                 r = i + order[1][0]
                 c = j + order[1][1]
