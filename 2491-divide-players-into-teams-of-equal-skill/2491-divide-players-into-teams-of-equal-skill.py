@@ -7,8 +7,9 @@ class Solution:
         result = 0
 
         for i in range(n // 2) :
-            if skill[i] + skill[n-1-i] != teamSkill :
+            r = n - 1 - i
+            if skill[i] + skill[r] != teamSkill :
                 return -1
-            result += skill[i] * skill[n-1-i]
+            result += skill[i] * skill[r]
 
         return result
