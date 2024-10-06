@@ -15,13 +15,13 @@ class Solution:
         s -= 1
         e1 = n1 - 1
         e2 = n2 - 1
-        while e1 >= 0 and e2 >= 0 and e1 > s and e2 > s and words1[e1] == words2[e2] :
+        while e1 >= 0 and e2 >= 0 and words1[e1] == words2[e2] :
             e1 -= 1
             e2 -= 1
         if e1 == -1 or e2 == -1 :
             return True
 
-        if s == e1 or s == e2 :
+        if s >= e1 or s >= e2 :
             return True
 
         return False
