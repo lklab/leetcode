@@ -10,7 +10,7 @@ class Solution:
                 stack.append(c)
             else :
                 if ord(c) >= block :
-                    stack.clear()
+                    stack = []
                     continue
 
                 last = stack[-1]
