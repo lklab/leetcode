@@ -3,11 +3,16 @@ class Solution:
         n = len(s)
         result = n
         stack = []
+        block = ord('E')
 
         for c in s :
             if not stack :
                 stack.append(c)
             else :
+                if ord(c) >= block :
+                    stack.clear()
+                    continue
+
                 last = stack[-1]
                 if last == 'A' and c == 'B' or last == 'C' and c == 'D' :
                     stack.pop()
