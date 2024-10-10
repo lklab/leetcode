@@ -3,54 +3,86 @@ public class Solution
     public int MaxWidthRamp(int[] nums)
     {
         int n = nums.Length;
-        int[] indexes = new int[n];
+        Stack<int> stack = new Stack<int>();
+
         for (int i = 0; i < n; ++i)
         {
-            indexes[i] = i;
+            if (stack.Count == 0 || nums[stack.Peek()] > nums[i])
+            {
+                stack.Push(i);
+            }
         }
 
-        Array.Sort(indexes, (a, b) =>
-        {
-            if (nums[a] == nums[b])
-            {
-                if (a < b)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
-            else if (nums[a] < nums[b])
-            {
-                return -1;
-            }
-            else
-            {
-                return 1;
-            }
-        });
-
-        int min = indexes[0];
         int result = 0;
-
-        for (int i = 0; i < n; ++i)
+        for (int i = n - 1; i >= 0; --i)
         {
-            int index = indexes[i];
-            if (min > index)
+            while (stack.Count > 0 && i - stack.Peek() <= result)
             {
-                min = index;
+                stack.Pop();
             }
 
-            int temp = index - min;
-            if (result < temp)
+            while (stack.Count > 0 && nums[stack.Peek()] <= nums[i])
             {
-                result = temp;
+                result = Math.Max(result, i - stack.Pop());
+            }
+
+            if (stack.Count == 0)
+            {
+                break;
             }
         }
 
         return result;
+
+        // int n = nums.Length;
+        // int[] indexes = new int[n];
+        // for (int i = 0; i < n; ++i)
+        // {
+        //     indexes[i] = i;
+        // }
+
+        // Array.Sort(indexes, (a, b) =>
+        // {
+        //     if (nums[a] == nums[b])
+        //     {
+        //         if (a < b)
+        //         {
+        //             return -1;
+        //         }
+        //         else
+        //         {
+        //             return 1;
+        //         }
+        //     }
+        //     else if (nums[a] < nums[b])
+        //     {
+        //         return -1;
+        //     }
+        //     else
+        //     {
+        //         return 1;
+        //     }
+        // });
+
+        // int min = indexes[0];
+        // int result = 0;
+
+        // for (int i = 0; i < n; ++i)
+        // {
+        //     int index = indexes[i];
+        //     if (min > index)
+        //     {
+        //         min = index;
+        //     }
+
+        //     int temp = index - min;
+        //     if (result < temp)
+        //     {
+        //         result = temp;
+        //     }
+        // }
+
+        // return result;
 
         // int n = nums.Length;
         // int result = 1;
