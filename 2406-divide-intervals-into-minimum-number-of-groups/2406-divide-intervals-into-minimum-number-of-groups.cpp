@@ -3,49 +3,29 @@ class Solution
 public:
     int minGroups(vector<vector<int>>& intervals)
     {
-        vector<int> event_positions;
-        map<int, int> event_map;
+        vector<int> start_times, end_times;
 
-        for (auto &interval : intervals)
-        {
-            int l = interval[0];
-            int r = interval[1] + 1;
+        // Extract start and end times
+        for (const auto& interval : intervals) {
+            start_times.push_back(interval[0]);
+            end_times.push_back(interval[1]);
+        }
 
-            if (event_map.find(l) != event_map.end())
-            {
-                event_map[l] += 1;
-            }
-            else
-            {
-                event_positions.push_back(l);
-                event_map.insert({l, 1});
-            }
+        // Sort start and end times
+        sort(start_times.begin(), start_times.end());
+        sort(end_times.begin(), end_times.end());
 
-            if (event_map.find(r) != event_map.end())
-            {
-                event_map[r] -= 1;
-            }
-            else
-            {
-                event_positions.push_back(r);
-                event_map.insert({r, -1});
+        int end_ptr = 0, group_count = 0;
+
+        // Traverse through the start times
+        for (int start : start_times) {
+            if (start > end_times[end_ptr]) {
+                end_ptr++;
+            } else {
+                group_count++;
             }
         }
 
-        sort(event_positions.begin(), event_positions.end());
-
-        int result = 0;
-        int current = 0;
-
-        for (int position : event_positions)
-        {
-            current += event_map[position];
-            if (current > result)
-            {
-                result = current;
-            }
-        }
-
-        return result;
+        return group_count;
     }
 };
