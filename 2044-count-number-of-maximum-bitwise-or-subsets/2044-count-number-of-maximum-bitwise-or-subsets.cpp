@@ -2,12 +2,16 @@
 
 class Solution
 {
+private:
+    int pows[16] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768 };
+
 public:
     void backtrack(const vector<int> &nums, int index, int currentOR, int maxOR, int &count)
     {
         if (currentOR == maxOR)
         {
-            count++;
+            count += pows[nums.size() - index];
+            return;
         }
 
         for (int i = index; i < nums.size(); ++i)
