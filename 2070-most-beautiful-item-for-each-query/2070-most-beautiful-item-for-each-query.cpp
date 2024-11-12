@@ -3,10 +3,7 @@ class Solution
 public:
     vector<int> maximumBeauty(vector<vector<int>>& items, vector<int>& queries)
     {
-        sort(items.begin(), items.end(), [](const vector<int>& a, const vector<int>& b)
-        {
-            return a[0] < b[0];
-        });
+        sort(items.begin(), items.end());
 
         unordered_map<int, int> priceMap;
         vector<int> priceList;
