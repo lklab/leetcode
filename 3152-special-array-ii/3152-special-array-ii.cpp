@@ -45,8 +45,8 @@ public:
                 continue;
             }
 
-            int index0 = *iter0;
-            int index1 = *iter1;
+            int index0 = iter0 - subs.begin();
+            int index1 = iter1 - subs.begin();
 
             if (index0 % 2 == 0 && subs[index0] == query[0])
             {
