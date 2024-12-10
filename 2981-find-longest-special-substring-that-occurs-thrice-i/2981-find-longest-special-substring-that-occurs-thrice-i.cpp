@@ -18,7 +18,7 @@ public:
                 ++size;
             }
 
-            for (int i = size; i > size - 3; --i)
+            for (int i = size; i > size - 3 && i > 0; --i)
             {
                 int key = (current - 'a') * 1000 + i;
                 m[key] += size - i + 1;
