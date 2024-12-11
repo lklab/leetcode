@@ -4,26 +4,18 @@ public:
     int maximumBeauty(vector<int>& nums, int k)
     {
         unordered_map<int, int> m;
-        vector<int> keys;
 
         for (int num : nums)
         {
-            int l = max(0, num - k);
-            int r = num + k + 1;
-
-            if (m.find(l) == m.end())
-            {
-                keys.push_back(l);
-            }
-            m[l] += 1;
-
-            if (m.find(r) == m.end())
-            {
-                keys.push_back(r);
-            }
-            m[r] -= 1;
+            m[max(0, num - k)] += 1;
+            m[num + k + 1] -= 1;
         }
 
+        vector<int> keys;
+        for (const auto& pair : m)
+        {
+            keys.push_back(pair.first);
+        }
         sort(keys.begin(), keys.end());
 
         int result = 0;
