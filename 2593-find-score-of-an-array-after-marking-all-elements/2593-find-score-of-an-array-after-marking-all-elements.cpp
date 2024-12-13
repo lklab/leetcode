@@ -11,18 +11,18 @@ public:
         }
 
         long long score = 0;
-        unordered_set<int> marked;
+        vector<int> marked(nums.size() + 2, 0);
 
         while (!heap.empty())
         {
             auto [num, index] = heap.top();
             heap.pop();
 
-            if (marked.find(index) == marked.end())
+            if (marked[index + 1] == 0)
             {
                 score += num;
-                marked.insert(index - 1);
-                marked.insert(index + 1);
+                marked[index] = 1;
+                marked[index + 2] = 1;
             }
         }
 
