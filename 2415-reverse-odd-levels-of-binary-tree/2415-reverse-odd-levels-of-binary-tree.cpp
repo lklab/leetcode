@@ -14,55 +14,24 @@ class Solution
 public:
     TreeNode* reverseOddLevels(TreeNode* root)
     {
-        queue<TreeNode*> q;
-        stack<int> s;
+        if (!root) return nullptr;
+        reverseOddLevelsHelper(root->left, root->right, 1);
+        return root;
+    }
 
-        q.push(root);
-        int count = 1;
+private:
+    void reverseOddLevelsHelper(TreeNode* left, TreeNode* right, int level)
+    {
+        if (!left || !right) return;
 
-        while (!q.empty())
+        // 홀수 레벨에서 값 스왑
+        if (level % 2 == 1)
         {
-            // for even level
-            for (int i = 0; i < count; ++i)
-            {
-                TreeNode* node = q.front();
-                q.pop();
-
-                if (node -> left != nullptr)
-                {
-                    q.push(node -> left);
-                    q.push(node -> right);
-                }
-            }
-
-            count = q.size();
-
-            // for odd level
-            for (int i = 0; i < count; ++i)
-            {
-                TreeNode* node = q.front();
-                q.pop();
-                s.push(node -> val);
-                q.push(node);
-            }
-
-            for (int i = 0; i < count; ++i)
-            {
-                TreeNode* node = q.front();
-                q.pop();
-                node -> val = s.top();
-                s.pop();
-
-                if (node -> left != nullptr)
-                {
-                    q.push(node -> left);
-                    q.push(node -> right);
-                }
-            }
-
-            count = q.size();
+            swap(left->val, right->val);
         }
 
-        return root;
+        // 다음 레벨로 재귀 호출
+        reverseOddLevelsHelper(left->left, right->right, level + 1);
+        reverseOddLevelsHelper(left->right, right->left, level + 1);
     }
 };
