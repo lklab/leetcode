@@ -6,7 +6,7 @@ private:
         int low = 0, high = dq.size() - 1;
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (dq[mid].first < h) {
+            if (dq[mid].first <= h) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
