@@ -15,6 +15,11 @@ public:
     vector<int> largestValues(TreeNode* root)
     {
         vector<int> result;
+        if (root == nullptr)
+        {
+            return result;
+        }
+
         queue<TreeNode*> q;
         q.push(root);
         int count = 1;
