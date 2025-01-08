@@ -71,9 +71,15 @@ public:
             unordered_set<int>* suffixSet = countSuffix(words[i], &suffixRoot);
 
             if (prefixSet != nullptr && suffixSet != nullptr) {
-                unordered_set<int> unionSet = *prefixSet;
-                unionSet.insert(suffixSet -> begin(), suffixSet -> end());
-                result += unionSet.size();
+                unordered_set<int> intersectionSet;
+
+                for (const auto& index : *prefixSet) {
+                    if (suffixSet -> find(index) != suffixSet -> end()) {
+                        intersectionSet.insert(index);
+                    }
+                }
+
+                result += intersectionSet.size();
             }
 
             appendPrefix(i, words[i], &prefixRoot);
