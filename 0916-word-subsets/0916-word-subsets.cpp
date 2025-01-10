@@ -1,30 +1,30 @@
 class Solution {
 public:
     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
-        unordered_map<char, int> m;
+        vector<int> freq(26, 0);
 
         for (string& word : words2) {
-            unordered_map<char, int> counter;
+            vector<int> counter(26, 0);
             for (char c : word) {
-                ++counter[c];
+                ++counter[c - 'a'];
             }
 
-            for (const auto& pair : counter) {
-                m[pair.first] = max(m[pair.first], pair.second);
+            for (int i = 0; i < 26; ++i) {
+                freq[i] = max(freq[i], counter[i]);
             }
         }
 
         vector<string> result;
 
         for (string& word : words1) {
-            unordered_map<char, int> counter;
+            vector<int> counter(26, 0);
             for (char c : word) {
-                ++counter[c];
+                ++counter[c - 'a'];
             }
 
             bool success = true;
-            for (const auto& pair : m) {
-                if (counter[pair.first] < pair.second) {
+            for (int i = 0; i < 26; ++i) {
+                if (counter[i] < freq[i]) {
                     success = false;
                     break;
                 }
