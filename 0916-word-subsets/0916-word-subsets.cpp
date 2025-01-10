@@ -1,10 +1,11 @@
 class Solution {
 public:
     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
-        vector<int> freq(26, 0);
+        int freq[26] = {0};
+        int counter[26];
 
         for (string& word : words2) {
-            vector<int> counter(26, 0);
+            memset(counter, 0, sizeof(counter));
             for (char c : word) {
                 ++counter[c - 'a'];
             }
@@ -17,7 +18,7 @@ public:
         vector<string> result;
 
         for (string& word : words1) {
-            vector<int> counter(26, 0);
+            memset(counter, 0, sizeof(counter));
             for (char c : word) {
                 ++counter[c - 'a'];
             }
