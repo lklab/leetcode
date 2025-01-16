@@ -3,7 +3,7 @@ public:
     int xorAllNums(vector<int>& nums1, vector<int>& nums2) {
         int n1 = nums1.size();
         int n2 = nums2.size();
-        int bitCount[32] = {0};
+        long long bitCount[32] = {0};
 
         for (int num : nums1) {
             int bit = 0;
