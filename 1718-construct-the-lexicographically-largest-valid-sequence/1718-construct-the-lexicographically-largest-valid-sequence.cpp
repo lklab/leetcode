@@ -1,3 +1,5 @@
+// source: https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/solutions/6414443/construct-the-lexicographically-largest-valid-sequence/?envType=daily-question&envId=2025-02-16
+
 class Solution {
 public:
     vector<int> constructDistancedSequence(int targetNumber) {
