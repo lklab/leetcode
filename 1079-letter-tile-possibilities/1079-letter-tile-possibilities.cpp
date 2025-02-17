@@ -6,11 +6,11 @@ private:
         for (int i = 0; i < tiles.size(); ++i) {
             if (!used[i]) {
                 string next = current + tiles[i];
-                if (letters.find(next) == letters.end()) {
+                // if (letters.find(next) == letters.end()) {
                     used[i] = true;
                     dfs(tiles, next, letters, used);
                     used[i] = false;
-                }
+                // }
             }
         }
     }
