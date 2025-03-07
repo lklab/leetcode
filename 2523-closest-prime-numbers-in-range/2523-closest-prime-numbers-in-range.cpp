@@ -1,16 +1,16 @@
 class Solution {
 public:
     vector<int> closestPrimes(int left, int right) {
-        bitset<1000001> isNotPrime;
-        // bool isNotPrime[1000001] = { false };
-        // memset(isNotPrime, 0, sizeof(isNotPrime));
+        // bitset<1000001> isNotPrime;
+        bool isNotPrime[1000001] = { false };
+        memset(isNotPrime, 0, sizeof(isNotPrime));
         int sqrtRight = (int)sqrt(right);
 
         for (int i = 2; i <= sqrtRight; ++i) {
             if (!isNotPrime[i]) {
                 for (int j = i * 2; j <= right; j += i) {
-                    isNotPrime.set(j);
-                    // isNotPrime[j] = true;
+                    // isNotPrime.set(j);
+                    isNotPrime[j] = true;
                     // cout << j << endl;
                 }
             }
