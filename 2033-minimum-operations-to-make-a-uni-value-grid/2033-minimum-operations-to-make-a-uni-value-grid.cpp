@@ -3,7 +3,8 @@ public:
     int minOperations(vector<vector<int>>& grid, int x) {
         int n = grid.size();
         int m = grid[0].size();
-        vector<int> arr(n * m);
+        int size = n * m;
+        vector<int> arr(size);
 
         int base = grid[0][0];
 
@@ -23,24 +24,13 @@ public:
 
         sort(arr.begin(), arr.end());
 
-        int minVal = arr[0];
-        for (int i = 0; i < arr.size(); ++i) {
-            arr[i] -= minVal;
-            arr[i] /= x;
+        int median = arr[size / 2];
+        int operations = 0;
+
+        for (int val : arr) {
+            operations += abs(val - median) / x;
         }
 
-        x = arr[n / 2];
-        int result1 = 0;
-        for (int i : arr) {
-            result1 += abs(i - x);
-        }
-
-        x = arr[n / 2 - 1];
-        int result2 = 0;
-        for (int i : arr) {
-            result2 += abs(i - x);
-        }
-
-        return min(result1, result2);
+        return operations;
     }
 };
