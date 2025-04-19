@@ -40,7 +40,7 @@ public:
                 ++right;
             }
 
-            cout << left - nums.begin() << ", " << right - nums.begin() << endl;
+            // cout << left - nums.begin() << ", " << right - nums.begin() << endl;
 
             if (right >= left)
             {
